@@ -1,0 +1,27 @@
+{
+    "name": "jahidhasan3323/autodesk-forge",
+    "description": "this is a package for autodesk forge process management",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "jahidhasan3323"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "ext-curl": "*"
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "AutodeskForge\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "AutodeskForge\\AutodeskForgeServiceProvider"
+            ]
+        }
+    }
+}
