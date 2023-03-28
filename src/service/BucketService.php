@@ -43,13 +43,28 @@ class BucketService extends AutodeskForgeService
         }
     }
 
+    /**
+     * @param string $bucketKey
+     * @return array|object|null
+     * @throws Exception
+     */
+    public function getBucketDetails(string $bucketKey): array|object|null
+    {
+        $bucket_response = Http::withToken($this->getToken(true))->get("{$this->apiBaseUrl}/oss/v2/buckets/{$bucketKey}/details");
+
+        if ($bucket_response->status() == 200) {
+            return $bucket_response->object();
+        } else {
+            throw new Exception ('get bucket failed ' . $bucket_response->body());
+        }
+    }
 
     /**
-     * @param $bucketKey
+     * @param string $bucketKey
      * @return object|array|null
      * @throws Exception
      */
-    public function deleteBucket($bucketKey): object|array|null
+    public function deleteBucket(string $bucketKey): object|array|null
     {
         $bucket_response = Http::withToken($this->getToken(true))->delete("{$this->apiBaseUrl}/oss/v2/buckets/{$bucketKey}");
 

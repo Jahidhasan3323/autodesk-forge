@@ -123,5 +123,31 @@ class AutodeskForgeService
         }
     }
 
+    /**
+     * @param $encodedUrn
+     * @return array|object|null
+     * @throws Exception
+     */
+    public function getManifest($encodedUrn): object|array|null
+    {
+        return $this->checkTranslateStatus($encodedUrn);
+    }
+
+    /**
+     * @param $encodedUrn
+     * @return array|object|void
+     * @throws Exception
+     */
+    public function deleteManifest($encodedUrn)
+    {
+        $response = Http::withToken($this->getToken(true))->delete("{$this->apiBaseUrl}/modelderivative/v2/designdata/{$encodedUrn}/manifest");
+        if ($response) {
+            if ($response->status() == '200') {
+                return $response->object();
+            } else {
+                throw new Exception ('The file is not a Revit file or is not a supported version.');
+            }
+        }
+    }
 
 }

@@ -206,4 +206,134 @@ class UploadFileUsingBim360Service extends AutodeskForgeService
             throw new Exception ('file upload complete failed '.$response->body());
         }
     }
+
+    /**
+     * @param string $projectId
+     * @param string $folderId
+     * @return object|null
+     * @throws Exception
+     */
+    public function getItemByFolder(string $projectId, string $folderId): object|null
+    {
+        $response = Http::withToken($this->getToken(true))->get("{$this->apiBaseUrl}/data/v1/projects/{$projectId}/folders/{$folderId}/contents");
+
+        if ($response->status() == 200) {
+           return $response->object();
+        } else {
+            throw new Exception ('find item failed ' . $response->body());
+        }
+    }
+
+    /**
+     * @param string $projectId
+     * @param string $itemId
+     * @return object|null
+     * @throws Exception
+     */
+    public function findItemStorageLocation(string $projectId, string $itemId): object|null
+    {
+        $response = Http::withToken($this->getToken(true))->get("{$this->apiBaseUrl}/data/v1/projects/{$projectId}/items/{$itemId}");
+
+        if ($response->status() == 200) {
+           return $response->object();
+        } else {
+            throw new Exception ('find storage location failed ' . $response->body());
+        }
+    }
+
+    /**
+     * @param string $projectId
+     * @param string $itemId
+     * @return object|null
+     * @throws Exception
+     */
+    public function findItemVersion(string $projectId, string $itemId): object|null
+    {
+        $response = Http::withToken($this->getToken(true))->get("{$this->apiBaseUrl}/data/v1/projects/{$projectId}/items/{$itemId}/versions");
+
+        if ($response->status() == 200) {
+           return $response->object();
+        } else {
+            throw new Exception ($response->body());
+        }
+    }
+
+    /**
+     * @param string $bucketKey
+     * @param string $objectKey
+     * @return object|null
+     * @throws Exception
+     */
+    public function getS3Url(string $bucketKey, string $objectKey): object|null
+    {
+        $response = Http::withToken($this->getToken(true))->get("{$this->apiBaseUrl}/oss/v2/buckets/{$bucketKey}/objects/{$objectKey}/signeds3download");
+
+        if ($response->status() == 200) {
+           return $response->object();
+        } else {
+            throw new Exception ($response->body());
+        }
+    }
+
+    /**
+     * @param string $projectId
+     * @param string $itemId
+     * @param string $version
+     * @return object|array|null
+     * @throws Exception
+     */
+    public function deleteItem(string $projectId, string $itemId, string $version = '1.0'): object|array|null
+    {
+        $response = Http::withToken($this->getToken(true))->post("{$this->apiBaseUrl}/data/v1/projects/{$projectId}/versions",[
+            "jsonapi" => ["version" => $version],
+            "data" => [
+                "type" => "versions",
+                "attributes" => [
+                    "extension" => [
+                        "type" => "versions:autodesk.core:Deleted",
+                        "version" => $version,
+                    ],
+                ],
+                "relationships" => [
+                    "item" => [
+                        "data" => [
+                            "type" => "items",
+                            "id" => $itemId,
+                        ],
+                    ],
+                ],
+            ],
+        ]);
+
+        if ($response->status() == 200) {
+           return $response->object();
+        } else {
+            throw new Exception ($response->body());
+        }
+    }
+
+    /**
+     * @param string $projectId
+     * @param string $deletedItemId
+     * @param string $version
+     * @return object|array|null
+     * @throws Exception
+     */
+    public function restoreItem(string $projectId, string $deletedItemId, string $version='1'): object|array|null
+    {
+        $response = Http::withToken($this->getToken(true))->post("{$this->apiBaseUrl}/data/v1/projects/{$projectId}/versions?copyFrom={$deletedItemId}&version={$version}",[
+            "data" =>
+                [
+                    "type" => "versions"
+                ]
+        ]);
+
+        if ($response->status() == 200) {
+           return $response->object();
+        } else {
+            throw new Exception ($response->body());
+        }
+    }
+
+
 }
