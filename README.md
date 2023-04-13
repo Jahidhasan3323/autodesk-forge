@@ -56,6 +56,10 @@ You can get the full documentation for the API on the [Developer Portal](https:/
 All URIs are relative to https://developer.api.autodesk.com. For example, the *createActivity* URI is 'https://developer.api.autodesk.com/autocad.io/us-east/v2/Activities'.
 
 
-Method | Parameter                      | Description
------------- |--------------------------------| -------------
-[**getToken**](docs/Authentication/Token.md#getToken) | ``optional`` $isSetSession => bool | Get authentication token. If you ``send`` $isSetSession parameter value ``true``, then it store the token in session. So applocation not sent api request for every time for token.
+Method | Parameter                                                                                                   | Description
+------------ |-------------------------------------------------------------------------------------------------------------| -------------
+[**getToken**](docs/Authentication/Token.md#getToken) | ``optional`` $isSetSession => bool                                                                          | Get authentication token. If you ``send`` $isSetSession parameter value ``true``, then it store the token in session. So application not sent api request for every time for token.
+[**createBucket**](docs/Bucket/Bucket.md#createBucket) | ``optional`` $policyKey => string (persistent, transient, temporary)<br/><br/> ``optional`` $bucketKey => string | Create a bucket  
+[**getBuckets**](docs/Bucket/Bucket.md#getBuckets) |   | get bucket list
+[**getBucketDetails**](docs/Bucket/Bucket.md#getBucketDetails) | bucketKey  | get bucket details
+[**deleteBucket**](docs/Bucket/Bucket.md#deleteBucket) | bucketKey  | delete bucket details
