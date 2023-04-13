@@ -24,8 +24,8 @@ class AutodeskForgeService
     public function getToken(bool $isSetSession = false): mixed
     {
         $this->getTokenInfo($isSetSession);
-        if (Session::exists('autodeskForge')) {
-            $autodeskTokenInfo = Session::get('autodeskForge');
+        if (Session::exists('autodeskForgeToken')) {
+            $autodeskTokenInfo = Session::get('autodeskForgeToken');
             if (time() + $autodeskTokenInfo['expires_in'] > time() + 30) { // time() + 30 second
                 return $autodeskTokenInfo['access_token'];
             } else {
@@ -58,7 +58,7 @@ class AutodeskForgeService
         ]);
         if ($bucket_response->status() == 200) {
             if ($isSetSession) {
-                Session::put('autodeskForge', $bucket_response->json());
+                Session::put('autodeskForgeToken', $bucket_response->json());
             }
             return $bucket_response->json()['access_token'];
         } else {
