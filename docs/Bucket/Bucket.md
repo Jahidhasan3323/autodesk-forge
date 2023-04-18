@@ -73,7 +73,8 @@ Return bucket details in JSON format if the caller is the owner of the bucket. A
 
 ### Example
 ```php
-(new AutodeskForge\service\BucketService())->getBucketDetails();
+$bucketKey = 'model123';
+(new AutodeskForge\service\BucketService())->getBucketDetails($bucketKey);
 
 ```
 
@@ -110,15 +111,16 @@ Note that the bucket name will not be immediately available for reuse.
 
 ### Example
 ```php
-(new AutodeskForge\service\BucketService())->deleteBucket();
+$bucketKey = 'model123';
+(new AutodeskForge\service\BucketService())->deleteBucket($bucketKey);
 
 ```
 
 ### Parameters
 
- Name              | Type                       | Default | Description                          | Notes
-|-------------------|----------------------------|-------------|--------------------------------------| -------------
- **bucketKey** | string |  | delete the given buckut key's bucket |
+ | Name          | Type   | Default | Description                          | Notes |
+|---------------|--------|---------|--------------------------------------|-------|
+ | **bucketKey** | string |         | delete the given bucket key's bucket |
 
 ### Output ( null )
 If process is completed successfully then return null

@@ -7,13 +7,17 @@ use Illuminate\Support\Facades\Http;
 
 class UploadFileService extends AutodeskForgeService
 {
+
     /**
+     * @param string $path
+     * @param string $fileName
+     * @return array|object
      * @throws Exception
      */
-    public function upload($path, $fileName): array|object
+    public function upload(string $path, string $fileName): array|object
     {
         //Step 1: create bucket
-        $bucketKey = $this->createBucket();
+        $bucketKey = (new BucketService)->createBucket();
 
         //Step 2: Initiate a direct to s3 multipart upload
         list($uploadKey, $signedUrl) = $this->s3MultipartUpload($bucketKey, $fileName);
