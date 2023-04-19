@@ -2,13 +2,9 @@
 
 namespace AutodeskForge\service;
 
-use App\Jobs\AutodeskFileExport;
 use Exception;
-use GuzzleHttp\Promise\PromiseInterface;
-use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
-use RDDM\Art\Stores\Models\BimUploadFiles;
 
 
 class AutodeskForgeService
@@ -66,31 +62,38 @@ class AutodeskForgeService
         }
     }
 
+    private function encodeUrn($urn): string
+    {
+        return rtrim(strtr(base64_encode($urn), '+/', '-_'), '=');
+    }
+
 
     /**
-     * @param $urn
-     * @param $fileName
+     * @param string $encodedUrn
+     * @param string $fileName
+     * @param string $type
+     * @param array $views
+     * @param bool $compressedUrn
+     * @param string $region
      * @return array|object
      * @throws Exception
      */
-    public function translateFile($urn, $fileName): object|array
+    public function translateFile(string $encodedUrn, string $fileName, string $type = 'svf2',array $views = ["2d", "3d"], bool $compressedUrn = false, string $region = 'us'): object|array
     {
         $body = [
             "input" => [
-                "urn" => $urn,
-                "compressedUrn" => false,
+                "urn" => $encodedUrn,
+                "compressedUrn" => $compressedUrn,
                 "rootFilename" => $fileName
             ],
             "output" => [
                 "destination" => [
-                    "region" => "us"
+                    "region" => $region
                 ],
                 "formats" => [
                     [
-                        "type" => "svf2",
-                        "views" => [
-                            "2d", "3d"
-                        ]
+                        "type" => $type,
+                        "views" => $views
                     ]
                 ],
             ],
