@@ -47,8 +47,7 @@ $encodedUrn = (new AutodeskForge\service\AutodeskForgeService)->encodeUrn($objec
 ```
 
 
-# **encodeUrn** 
-
+# **encodeUrn**
 This method encode the provided string in base64 
 
 
