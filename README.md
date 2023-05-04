@@ -27,7 +27,7 @@ composer require jahid/autodesk-forge
 #### Vendor publish
 Run command 
 ```php
-php artisan vendor:pubish
+php artisan vendor:publish
 ```
 Then publish the `AutodeskForgeService` service.
 
