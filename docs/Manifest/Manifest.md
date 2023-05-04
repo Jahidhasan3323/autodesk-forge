@@ -94,8 +94,8 @@ $encodedUrn = (new AutodeskForge\service\AutodeskForgeService)->encodeUrn($objec
 
 ### Parameters
 
- | Name            | Type   | Description | Notes |
-|-----------------|--------|--|-------|
+ | Name            | Type   | Description                                                                                                                                                              | Notes |
+|-----------------|--------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------|
 | **$encodedUrn** | string | You find the `objectId` in upload file response, this is urn. You have to `encode` this urn as base64. You can also use [**encodeUrn**](#encodeUrn) for encode the `urn` |       |
 
 ### Output (String)
@@ -128,8 +128,8 @@ $encodedUrn = (new AutodeskForge\service\AutodeskForgeService)->encodeUrn($objec
 
 ### Parameters
 
-| Name            | Type   | Description | Notes |
-|-----------------|--------|--|-------|
+| Name            | Type   | Description                                                                                                                                                              | Notes |
+|-----------------|--------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------|
 | **$encodedUrn** | string | You find the `objectId` in upload file response, this is urn. You have to `encode` this urn as base64. You can also use [**encodeUrn**](#encodeUrn) for encode the `urn` |       |
 
 ### Output (object)
