@@ -24,14 +24,14 @@ To install the bindings via [Composer](http://getcomposer.org/), run:
 ```
 composer require jahid/autodesk-forge
 ```
-## Vendor publish
+#### Vendor publish
 Run command 
 ```php
 php artisan vendor:pubish
 ```
 Then publish the `AutodeskForgeService` service.
 
-## Add those variable in .env 
+#### Add those variable in .env 
 ```dotenv
 AUTODESK_FORGE_CLIENT_ID=
 AUTODESK_FORGE_CLIENT_SECRET=
