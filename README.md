@@ -69,3 +69,14 @@ All URIs are relative to https://developer.api.autodesk.com. For example, the *c
 | [**getManifest**](docs/Manifest/Manifest.md#getManifest)  (check translate status)          | $encodedUrn=> string (`objectId` is urn, you must encode the urn)                                                                                                                                                               | this method is used for check translate status                                                                                                                                                                         |
 | [**deleteManifest**](docs/Manifest/Manifest.md#deleteManifest)  (delete translated file)    | $encodedUrn=> string (`objectId` is urn, you must encode the urn)                                                                                                                                                               | this method is used for delete translated file                                                                                                                                                                         |
 | [**checkTranslateStatus**](docs/Manifest/Manifest.md#getManifest)  (check translate status) | $encodedUrn=> string (`objectId` is urn, you must encode the urn)                                                                                                                                                               | this method is used for check translate status                                                                                                                                                                         |
+## Future Feature
+* Upload file in Autodesk 360<sup>0</sup>
+
+## Support
+
+[Please open an issue on GitHub](https://github.com/Jahidhasan3323/autodesk-forge)
+
+
+## License
+
+Create CRUD operation for Laravel application under the [MIT license](https://opensource.org/licenses/MIT).
