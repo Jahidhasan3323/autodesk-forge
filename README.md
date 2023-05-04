@@ -24,11 +24,25 @@ To install the bindings via [Composer](http://getcomposer.org/), run:
 ```
 composer require jahid/autodesk-forge
 ```
+## Vendor publish
+Run command 
+```php
+php artisan vendor:pubish
+```
+Then publish the `AutodeskForgeService` service.
+
+## Add those variable in .env 
+```dotenv
+AUTODESK_FORGE_CLIENT_ID=
+AUTODESK_FORGE_CLIENT_SECRET=
+AUTODESK_PROJECT=        #need only for Autodesk 360
+AUTODESK_SCOPE=           #i.e. "bucket:read,bucket:create,bucket:delete,data:create,account:read,account:write,data:write,data:read,code:all"
+```
 ## Tutorial
 Follow this tutorial to see a step-by-step authentication guide, and examples of how to use the Forge APIs.
 
 ### Create an App
-Create an app on the Forge Developer portal. Note the client ID and client secret.
+Create an app on the [Forge Developer portal](https://developer.autodesk.com/myapps). Note the client ID and client secret.
 
 ### Authentication
 This SDK comes with an [OAuth 2.0](https://developer.autodesk.com/en/docs/oauth/v2/overview/) client that allows you to
