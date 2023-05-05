@@ -3,6 +3,11 @@
     "description": "this is a package for autodesk forge process management",
     "type": "library",
     "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "AutodeskForge\\": "src/"
+        }
+    },
     "authors": [
         {
             "name": "jahid"
